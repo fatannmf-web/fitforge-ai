@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  FitForge AI — iOS Info.plist additions
+  Adaugă acestea în ios/App/App/Info.plist după ce rulezi: npx cap add ios
+-->
+<plist version="1.0">
+<dict>
+    <!-- App name -->
+    <key>CFBundleDisplayName</key>
+    <string>FitForge AI</string>
+
+    <key>CFBundleIdentifier</key>
+    <string>com.fitforgeai.app</string>
+
+    <key>CFBundleVersion</key>
+    <string>1</string>
+
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+
+    <!-- Camera permission — pentru Food Scanner și Body Scan -->
+    <key>NSCameraUsageDescription</key>
+    <string>FitForge AI folosește camera pentru a scana mâncarea și a analiza progresul corpului tău cu AI.</string>
+
+    <!-- Photo Library — pentru poze de progres -->
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>FitForge AI accesează galeria pentru a adăuga poze de progres și transformare.</string>
+
+    <!-- Microphone — pentru AI Coach vocal -->
+    <key>NSMicrophoneUsageDescription</key>
+    <string>FitForge AI folosește microfonul pentru comenzi vocale către AI Coach-ul tău personal.</string>
+
+    <!-- HealthKit — pentru date fitness -->
+    <key>NSHealthShareUsageDescription</key>
+    <string>FitForge AI poate citi date de fitness pentru a-ți personaliza antrenamentele și nutriția.</string>
+
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>FitForge AI poate salva antrenamentele și datele de nutriție în Apple Health.</string>
+
+    <!-- Push Notifications -->
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>remote-notification</string>
+        <string>fetch</string>
+    </array>
+
+    <!-- Dark mode support -->
+    <key>UIUserInterfaceStyle</key>
+    <string>Automatic</string>
+
+    <!-- Landscape lock — portrait only pentru fitness -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+    </array>
+
+    <!-- Status bar -->
+    <key>UIStatusBarStyle</key>
+    <string>UIStatusBarStyleLightContent</string>
+
+    <key>UIViewControllerBasedStatusBarAppearance</key>
+    <false/>
+</dict>
+</plist>

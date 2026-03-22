@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ro">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5, viewport-fit=cover" />
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- Theme & App Colors -->
+    <meta name="theme-color" content="#22c55e" />
+    <meta name="msapplication-TileColor" content="#0a0a0a" />
+    <meta name="msapplication-TileImage" content="/icons/icon-144.svg" />
+
+    <!-- iOS PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="FitForge AI" />
+    <link rel="apple-touch-icon" href="/icons/icon-152.svg" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72.svg" />
+    <link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96.svg" />
+    <link rel="apple-touch-icon" sizes="128x128" href="/icons/icon-128.svg" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144.svg" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/icon-152.svg" />
+    <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.svg" />
+    <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.svg" />
+
+    <!-- iOS Splash Screens -->
+    <meta name="apple-touch-startup-image" content="/icons/icon-512.svg" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/icons/icon-192.svg" />
+    <link rel="shortcut icon" href="/icons/icon-192.svg" />
+
+    <!-- SEO & Open Graph -->
+    <title>FitForge AI - Platforma ta de Fitness cu Inteligență Artificială</title>
+    <meta name="description" content="FitForge AI — AI Coach personal, tracking antrenamente, nutriție, gamificare și comunitate fitness. Disponibil pe Android și iPhone." />
+    <meta name="keywords" content="fitness, antrenament, nutritie, AI coach, workout tracker, gamificare, fitforge" />
+    <meta name="author" content="FitForge AI" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://fitforge-ai.com" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://fitforge-ai.com" />
+    <meta property="og:site_name" content="FitForge AI" />
+    <meta property="og:title" content="FitForge AI - Fitness cu Inteligență Artificială" />
+    <meta property="og:description" content="Antrenorul tău AI personal, scanner nutriție și comunitate fitness. Instalează pe iPhone și Android!" />
+    <meta property="og:image" content="https://fitforge-ai.com/icons/icon-512.svg" />
+    <meta property="og:image:width" content="512" />
+    <meta property="og:image:height" content="512" />
+    <meta property="og:locale" content="ro_RO" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@fitforgeai" />
+    <meta name="twitter:title" content="FitForge AI" />
+    <meta name="twitter:description" content="AI Coach personal, tracking fitness, nutriție și gamificare 💪" />
+    <meta name="twitter:image" content="https://fitforge-ai.com/icons/icon-512.svg" />
+
+    <!-- Instant dark background before React loads — prevents white flash -->
+    <style>
+      html, body, #root {
+        background-color: #0a0a0a;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+      }
+      #ff-boot {
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        font-family: system-ui, sans-serif;
+      }
+      #ff-boot .icon { font-size: 52px; }
+      #ff-boot .title { color: #00ff87; font-size: 26px; font-weight: 900; margin-top: 14px; }
+      #ff-boot .sub { color: #555; font-size: 13px; margin-top: 6px; }
+      #ff-boot .spinner {
+        width: 32px; height: 32px;
+        border: 3px solid #1a1a1a;
+        border-top-color: #00ff87;
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin-top: 24px;
+      }
+      @keyframes spin { to { transform: rotate(360deg); } }
+      #ff-error {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #0a0a0a;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        z-index: 10000;
+        font-family: system-ui, sans-serif;
+        padding: 24px;
+        text-align: center;
+      }
+      #ff-error .err-icon { font-size: 48px; }
+      #ff-error .err-title { color: #ffffff; font-size: 20px; font-weight: 700; margin-top: 12px; }
+      #ff-error .err-msg { color: #888; font-size: 13px; margin-top: 8px; max-width: 400px; }
+      #ff-error .err-btn {
+        margin-top: 20px; padding: 12px 28px;
+        background: #00ff87; color: #000; border: none;
+        border-radius: 12px; font-size: 15px; font-weight: 700;
+        cursor: pointer;
+      }
+    </style>
+
+    <!-- Fonts — loaded async so they never block rendering -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@600;700;900&display=swap" rel="stylesheet">
+    </noscript>
+
+    <script>
+      window.__bootStart = Date.now();
+
+      window.onerror = function(msg, src, line, col, err) {
+        var el = document.getElementById('ff-error');
+        if (el) {
+          el.querySelector('.err-msg').textContent = msg + (err ? '\n' + err.stack : '');
+          el.style.display = 'flex';
+        }
+        var boot = document.getElementById('ff-boot');
+        if (boot) boot.style.display = 'none';
+      };
+
+      window.addEventListener('unhandledrejection', function(e) {
+        var el = document.getElementById('ff-error');
+        if (el) {
+          var msg = e.reason ? (e.reason.stack || e.reason.message || String(e.reason)) : 'Unknown error';
+          el.querySelector('.err-msg').textContent = msg;
+          el.style.display = 'flex';
+        }
+        var boot = document.getElementById('ff-boot');
+        if (boot) boot.style.display = 'none';
+      });
+
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.addEventListener('message', function(e) {
+          if (e.data && e.data.type === 'SW_UPDATED') {
+            window.location.reload();
+          }
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="ff-boot">
+      <div class="icon">💪</div>
+      <div class="title">FitForge AI</div>
+      <div class="sub">Se încarcă...</div>
+      <div class="spinner"></div>
+    </div>
+    <div id="ff-error">
+      <div class="err-icon">⚠️</div>
+      <div class="err-title">Aplicația nu a putut fi încărcată</div>
+      <div class="err-msg"></div>
+      <button class="err-btn" onclick="window.location.reload()">Reîncarcă pagina</button>
+    </div>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
